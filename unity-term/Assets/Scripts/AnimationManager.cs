@@ -7,23 +7,23 @@ public class AnimationManager : MonoBehaviour
     [SerializeField]
     private Animator animator;
     [SerializeField]
-    private SlimeAppearanceContext context;
+    private SlimeAppearanceContext appearanceContext;
 
     private void Awake()
     {
-        if (context == null)
+        if (appearanceContext == null)
         {
-            context = GetComponent<SlimeAppearanceContext>();
+            appearanceContext = GetComponent<SlimeAppearanceContext>();
         }
 
-        context.OnStateChanged += OnStateChanged;
+        appearanceContext.OnStateChanged += OnStateChanged;
     }
 
     private void OnDestroy()
     {
-        if (context != null)
+        if (appearanceContext != null)
         {
-            context.OnStateChanged -= OnStateChanged;
+            appearanceContext.OnStateChanged -= OnStateChanged;
         }
     }
 
@@ -56,5 +56,10 @@ public class AnimationManager : MonoBehaviour
     public void SetAppearance(SlimeAppearanceAnimationState state)
     {
         animator.SetInteger("slime_status", (int)state);
+    }
+
+    public void Jump()
+    {
+        animator.SetTrigger("handle_jump");
     }
 }
