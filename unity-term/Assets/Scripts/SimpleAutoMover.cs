@@ -69,6 +69,7 @@ public class SimpleAutoMover : MonoBehaviour
 
             // 静止
             float waitTime = CalcRandomWaitTime(minMoveIntervalSecond, maxMoveIntervalSecond);
+            yield return new WaitForSeconds(waitTime);
         }
     }
 
