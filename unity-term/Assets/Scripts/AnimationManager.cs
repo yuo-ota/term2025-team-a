@@ -4,9 +4,28 @@ public class AnimationManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject mySelf;
-
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private SlimeAppearanceContext context;
+
+    private void Awake()
+    {
+        if (context == null)
+        {
+            context = GetComponent<SlimeAppearanceContext>();
+        }
+
+        context.OnStateChanged += OnStateChanged;
+    }
+
+    private void OnDestroy()
+    {
+        if (context != null)
+        {
+            context.OnStateChanged -= OnStateChanged;
+        }
+    }
 
     private void Update()
     {
@@ -27,5 +46,15 @@ public class AnimationManager : MonoBehaviour
         }
 
         transform.position = pos;
+    }
+
+    public void OnStateChanged(SlimeAppearanceAnimationState type)
+    {
+        SetAppearance(type);
+    }
+
+    public void SetAppearance(SlimeAppearanceAnimationState state)
+    {
+        animator.SetInteger("slime_status", (int)state);
     }
 }
