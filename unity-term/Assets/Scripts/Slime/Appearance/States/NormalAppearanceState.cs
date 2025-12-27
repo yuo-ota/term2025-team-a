@@ -1,5 +1,7 @@
 public class NormalAppearanceState : SlimeAppearanceState
 {
+    public SlimeAppearanceAnimationState StateType =>
+        SlimeAppearanceAnimationState.Normal;
     public SlimeAppearanceStateTransition ChangeBrightness(float brightness)
     {
         return SlimeAppearanceStateTransition.None;

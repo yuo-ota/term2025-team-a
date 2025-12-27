@@ -1,5 +1,7 @@
 public class HotAppearanceState : SlimeAppearanceState
 {
+    public SlimeAppearanceAnimationState StateType =>
+        SlimeAppearanceAnimationState.Hot;
     public SlimeAppearanceStateTransition ChangeBrightness(float brightness)
     {
         return SlimeAppearanceStateTransition.None;

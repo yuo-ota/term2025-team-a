@@ -1,12 +1,39 @@
+using System;
 using UnityEngine;
 
 public class SlimeAppearanceContext : MonoBehaviour
 {
     private SlimeAppearanceState currentState;
     private SlimeAppearanceStateFactory factory;
-    [SerializeField] private float brightness;
-    [SerializeField] private float humidity;
-    [SerializeField] private float temperature;
+    [SerializeField] private float brightness = SlimeAppearanceStateConstants.BRIGHTNESS_DEFAULT;
+    [SerializeField] private float humidity = SlimeAppearanceStateConstants.HUMIDITY_DEFAULT;
+    [SerializeField] private float temperature = SlimeAppearanceStateConstants.TEMPERATURE_DEFAULT;
+    public event Action<SlimeAppearanceAnimationState> OnStateChanged;
+
+    [ContextMenu("Debug/Humidity 80")]
+    public void DebugHumidity80()
+    {
+        ChangeHumidity(80f);
+    }
+
+    [ContextMenu("Debug/Humidity 10")]
+    public void DebugHumidity10()
+    {
+        ChangeHumidity(10f);
+    }
+
+    [ContextMenu("Debug/Temperature 25")]
+    public void DebugTemperature25()
+    {
+        ChangeTemperature(25f);
+    }
+
+    [ContextMenu("Debug/Temperature 40")]
+    public void DebugTemperature40()
+    {
+        ChangeTemperature(40f);
+    }
+
 
     void Awake()
     {
@@ -69,8 +96,10 @@ public class SlimeAppearanceContext : MonoBehaviour
         }
     }
 
-    private void ChangeState(SlimeAppearanceState sas)
+    private void ChangeState(SlimeAppearanceState newState)
     {
-        currentState = sas;
+        Debug.Log(newState.StateType.ToString());
+        currentState = newState;
+        OnStateChanged?.Invoke(newState.StateType);
     }
 }

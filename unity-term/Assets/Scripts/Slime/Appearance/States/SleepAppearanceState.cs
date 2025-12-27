@@ -1,5 +1,7 @@
 public class SleepAppearanceState : SlimeAppearanceState
 {
+    public SlimeAppearanceAnimationState StateType =>
+        SlimeAppearanceAnimationState.Sleep;
     public SlimeAppearanceStateTransition ChangeBrightness(float brightness)
     {
         if (brightness < SlimeAppearanceStateConstants.TO_BRIGHT_THRESHOLD)

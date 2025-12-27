@@ -1,5 +1,8 @@
 public class DryAppearanceState : SlimeAppearanceState
 {
+    public SlimeAppearanceAnimationState StateType =>
+        SlimeAppearanceAnimationState.Dry;
+
     public SlimeAppearanceStateTransition ChangeBrightness(float brightness)
     {
         return SlimeAppearanceStateTransition.None;
