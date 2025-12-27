@@ -98,7 +98,6 @@ public class SlimeAppearanceContext : MonoBehaviour
 
     private void ChangeState(SlimeAppearanceState newState)
     {
-        Debug.Log(newState.StateType.ToString());
         currentState = newState;
         OnStateChanged?.Invoke(newState.StateType);
     }
