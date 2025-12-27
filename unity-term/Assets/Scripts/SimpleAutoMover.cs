@@ -29,8 +29,6 @@ public class SimpleAutoMover : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
-    private float jumpTimer;
-
     void Start()
     {
         StartCoroutine(MoveRoutine());
