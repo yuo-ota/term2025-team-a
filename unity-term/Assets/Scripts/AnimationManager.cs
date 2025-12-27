@@ -45,6 +45,11 @@ public class AnimationManager : MonoBehaviour
         }
     }
 
+    public bool CanJump()
+    {
+        return appearanceContext.CanJump();
+    }
+
     public bool CanMove()
     {
         return appearanceContext.CanMove();

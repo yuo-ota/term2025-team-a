@@ -80,6 +80,11 @@ public class SimpleAutoMover : MonoBehaviour
     {
         while (true)
         {
+            if (!animationManager.CanJump())
+            {
+                yield return new WaitForSeconds(60f);
+            }
+
             animationManager.Jump();
 
             float waitTime = CalcRandomWaitTime(minJumpIntervalSecond, maxJumpIntervalSecond);
