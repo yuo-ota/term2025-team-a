@@ -36,4 +36,14 @@ public class DryAppearanceState : SlimeAppearanceState
     {
         return SlimeAppearanceStateTransition.None;
     }
+
+    public bool CanJump()
+    {
+        return true;
+    }
+
+    public bool CanMove()
+    {
+        return true;
+    }
 }

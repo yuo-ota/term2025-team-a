@@ -34,4 +34,14 @@ public class SleepAppearanceState : SlimeAppearanceState
     {
         return SlimeAppearanceStateTransition.None;
     }
+
+    public bool CanJump()
+    {
+        return false;
+    }
+
+    public bool CanMove()
+    {
+        return false;
+    }
 }
