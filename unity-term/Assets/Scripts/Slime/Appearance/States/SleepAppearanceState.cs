@@ -1,0 +1,31 @@
+public class SleepAppearanceState : SlimeAppearanceState
+{
+    public SlimeAppearanceStateTransition ChangeBrightness(float brightness)
+    {
+        if (brightness < SlimeAppearanceStateConstants.TO_BRIGHT_THRESHOLD)
+        {
+            return SlimeAppearanceStateTransition.None;
+        }
+
+        return SlimeAppearanceStateTransition.ToNight;
+    }
+    public SlimeAppearanceStateTransition ChangeHumidity(float humidity)
+    {
+        return SlimeAppearanceStateTransition.None;
+    }
+
+    public SlimeAppearanceStateTransition ChangeTemperature(float temperature)
+    {
+        return SlimeAppearanceStateTransition.None;
+    }
+
+    public void Feed()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public SlimeMoveStateTransition Jump()
+    {
+        return SlimeMoveStateTransition.None;
+    }
+}
