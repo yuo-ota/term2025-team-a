@@ -13,7 +13,7 @@ public class HotAppearanceState : SlimeAppearanceState
 
     public SlimeAppearanceStateTransition ChangeTemperature(float temperature)
     {
-        if (temperature > SlimeAppearanceStateConstants.TO_HOT_THRESHOLD)
+        if (SlimeAppearanceStateConstants.TO_HOT_THRESHOLD < temperature)
         {
             return SlimeAppearanceStateTransition.None;
         }
