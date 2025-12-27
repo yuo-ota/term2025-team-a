@@ -129,10 +129,11 @@ GameObject:
   m_Component:
   - component: {fileID: 908043053}
   - component: {fileID: 908043052}
+  - component: {fileID: 908043051}
   - component: {fileID: 908043056}
   - component: {fileID: 908043057}
-  - component: {fileID: 908043051}
   - component: {fileID: 908043054}
+  - component: {fileID: 908043058}
   m_Layer: 0
   m_Name: slime_normal_stand
   m_TagString: Untagged
@@ -258,6 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySelf: {fileID: 908043050}
   animator: {fileID: 908043051}
+  context: {fileID: 0}
 --- !u!114 &908043057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +272,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a405564e69701ed4888d157e5ecd067b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &908043058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908043050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a73228eb1c0040b44b763bcab4002f5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brightness: 0
+  humidity: 0
+  temperature: 0
 --- !u!1 &2088865881
 GameObject:
   m_ObjectHideFlags: 0

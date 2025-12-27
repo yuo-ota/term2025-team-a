@@ -20,14 +20,4 @@ public class HotAppearanceState : SlimeAppearanceState
 
         return SlimeAppearanceStateTransition.ToStandard;
     }
-
-    public void Feed()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public SlimeMoveStateTransition Jump()
-    {
-        return SlimeMoveStateTransition.ToJump;
-    }
 }

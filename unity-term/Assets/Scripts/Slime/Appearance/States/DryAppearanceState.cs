@@ -21,14 +21,4 @@ public class DryAppearanceState : SlimeAppearanceState
     {
         return SlimeAppearanceStateTransition.None;
     }
-
-    public void Feed()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public SlimeMoveStateTransition Jump()
-    {
-        return SlimeMoveStateTransition.ToJump;
-    }
 }

@@ -20,14 +20,4 @@ public class SleepAppearanceState : SlimeAppearanceState
     {
         return SlimeAppearanceStateTransition.None;
     }
-
-    public void Feed()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public SlimeMoveStateTransition Jump()
-    {
-        return SlimeMoveStateTransition.None;
-    }
 }
