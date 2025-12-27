@@ -41,6 +41,13 @@ public class SlimeAppearanceContext : MonoBehaviour
         currentState = factory.Create(SlimeAppearanceStateTransition.ToStandard);
     }
 
+    public void ChangeDayNight()
+    {
+        SlimeAppearanceStateTransition transition = currentState.ChangeDayNight();
+
+        HandleState(transition);
+    }
+
     public void ChangeBrightness(float brightness)
     {
         SlimeAppearanceStateTransition transition = currentState.ChangeBrightness(brightness);
@@ -81,6 +88,7 @@ public class SlimeAppearanceContext : MonoBehaviour
         // —Dæ‡ˆÊ brightness > humidity > temperature
         var transitions = new[]
         {
+            currentState.ChangeDayNight(),
             currentState.ChangeBrightness(brightness),
             currentState.ChangeHumidity(humidity),
             currentState.ChangeTemperature(temperature),
