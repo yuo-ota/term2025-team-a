@@ -109,4 +109,14 @@ public class SlimeAppearanceContext : MonoBehaviour
         currentState = newState;
         OnStateChanged?.Invoke(newState.StateType);
     }
+
+    public bool CanJump()
+    {
+        return currentState.CanJump();
+    }
+
+    public bool CanMove()
+    {
+        return currentState.CanMove();
+    }
 }

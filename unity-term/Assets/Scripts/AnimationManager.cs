@@ -27,27 +27,6 @@ public class AnimationManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        Vector3 pos = transform.position;
-
-        if (Input.GetMouseButtonDown(0)) // 左クリック
-        {
-            animator.SetTrigger("handle_jump");
-            Debug.Log("ジャンプトリガーが発動しました");
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            pos.x -= 0.01f;
-        } 
-        else if (Input.GetKey(KeyCode.D))
-        {
-            pos.x += 0.01f;
-        }
-
-        transform.position = pos;
-    }
-
     public void OnStateChanged(SlimeAppearanceAnimationState type)
     {
         SetAppearance(type);
@@ -60,6 +39,14 @@ public class AnimationManager : MonoBehaviour
 
     public void Jump()
     {
-        animator.SetTrigger("handle_jump");
+        if (appearanceContext.CanJump())
+        {
+            animator.SetTrigger("handle_jump");
+        }
+    }
+
+    public bool CanMove()
+    {
+        return appearanceContext.CanMove();
     }
 }

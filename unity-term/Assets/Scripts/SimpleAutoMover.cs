@@ -13,15 +13,15 @@ public class SimpleAutoMover : MonoBehaviour
     [SerializeField]
     private float minMoveIntervalSecond = 5f;
     [SerializeField]
-    private float maxMoveIntervalSecond = 60f;
+    private float maxMoveIntervalSecond = 30f;
     [SerializeField]
     private float minJumpIntervalSecond = 10f;
     [SerializeField]
-    private float maxJumpIntervalSecond = 60f;
+    private float maxJumpIntervalSecond = 30f;
 
     [Header("ステータス設定")]
     [SerializeField]
-    private float moveSpeed = 2f;
+    private float moveSpeed = 4f;
 
     [Header("その他設定")]
     [SerializeField]
@@ -45,6 +45,11 @@ public class SimpleAutoMover : MonoBehaviour
             float target = Random.Range(minPositionX, maxPositionX);
             float start = transform.position.x;
 
+            if (!animationManager.CanMove())
+            {
+                yield return new WaitForSeconds(60f);
+            }
+
             // 画像の向き設定
             bool isGoalLeft = target - start < 0;
             FlipSprite(isGoalLeft);
@@ -58,13 +63,12 @@ public class SimpleAutoMover : MonoBehaviour
                     moveSpeed * Time.deltaTime
                 ).x;
 
-                transform.position = new Vector3 (newX, transform.position.y, 0);
+                transform.position = new Vector3(newX, transform.position.y, 0);
                 yield return null;
             }
 
             // 静止
             float waitTime = CalcRandomWaitTime(minMoveIntervalSecond, maxMoveIntervalSecond);
-            yield return new WaitForSeconds(waitTime);
         }
     }
 
