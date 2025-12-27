@@ -78,7 +78,7 @@ public class SlimeAppearanceContext : MonoBehaviour
 
     private void ReCalcState()
     {
-        // —Dæ‡ˆÊ brightness > humidity > temerature
+        // —Dæ‡ˆÊ brightness > humidity > temperature
         var transitions = new[]
         {
             currentState.ChangeBrightness(brightness),
