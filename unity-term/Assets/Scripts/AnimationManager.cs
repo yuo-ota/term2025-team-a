@@ -7,6 +7,8 @@ public class AnimationManager : MonoBehaviour
     [SerializeField]
     private Animator animator;
     [SerializeField]
+    private Animator headIconAnimator;
+    [SerializeField]
     private SlimeAppearanceContext appearanceContext;
 
     private void Awake()
@@ -35,6 +37,19 @@ public class AnimationManager : MonoBehaviour
     public void SetAppearance(SlimeAppearanceAnimationState state)
     {
         animator.SetInteger("slime_status", (int)state);
+
+        if (state == SlimeAppearanceAnimationState.Normal)
+        {
+            return;
+        }
+        
+        if (state == SlimeAppearanceAnimationState.Sleep)
+        {
+            headIconAnimator.SetInteger("head_icon_status", 2);
+            return;
+        }
+
+        headIconAnimator.SetInteger("head_icon_status", 1);
     }
 
     public void Jump()
