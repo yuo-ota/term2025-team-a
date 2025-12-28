@@ -5,29 +5,29 @@ public class SimpleAutoMover : MonoBehaviour
 {
     [Header("移動先範囲")]
     [SerializeField]
-    private readonly float minPositionX; // 最小座標
+    private float minPositionX; // 最小座標
     [SerializeField]
-    private readonly float maxPositionX; // 最大座標
+    private float maxPositionX; // 最大座標
 
     [Header("インターバル設定")]
     [SerializeField]
-    private readonly float minMoveIntervalSecond = 5f;
+    private float minMoveIntervalSecond = 5f;
     [SerializeField]
-    private readonly float maxMoveIntervalSecond = 30f;
+    private float maxMoveIntervalSecond = 30f;
     [SerializeField]
-    private readonly float minJumpIntervalSecond = 10f;
+    private float minJumpIntervalSecond = 10f;
     [SerializeField]
-    private readonly float maxJumpIntervalSecond = 30f;
+    private float maxJumpIntervalSecond = 30f;
 
     [Header("ステータス設定")]
     [SerializeField]
-    private readonly float moveSpeed = 4f;
+    private float moveSpeed = 4f;
 
     [Header("その他設定")]
     [SerializeField]
-    private readonly AnimationManager animationManager;
+    private AnimationManager animationManager;
     [SerializeField]
-    private readonly SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
