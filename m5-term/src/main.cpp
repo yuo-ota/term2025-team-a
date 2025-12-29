@@ -2,18 +2,18 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
-#include <M5Stack.h>
+#include <M5Core2.h>
 
 // WiFi設定
-const char *ssid = "yourssid";
-const char *password = "yourPASSWORD";
+const char *ssid = "Pixel_3857";
+const char *password = "pn6ryyq2vdrwbcx";
 
 // mockData
 float temp = 25.5;
 float humidity = 60.0;
 String deviceId = "Device123";
 
-const char *serverUrl = "http://[IPAdress]:[PortNumber]/api/m5data";
+const char *serverUrl = "http://10.20.167.205:3000/api/m5data";
 
 void setup()
 {
@@ -21,11 +21,11 @@ void setup()
     Serial.begin(115200);
     WiFi.begin(ssid, password);
 
-
+    M5.Lcd.printf("Connecting to WiFi...\n");
     while (WiFi.status() != WL_CONNECTED)
     {
         delay(1000);
-        M5.Lcd.printf("Connecting to WiFi...");
+        M5.Lcd.printf(".");
     }
     Serial.println("Connected to WiFi");
     M5.Lcd.printf("Connected to WiFi\n");
@@ -33,7 +33,7 @@ void setup()
 
 void loop()
 {
-    StaticJsonDocument<200> doc;
+    DynamicJsonDocument doc(200);
 
     doc["device_id"] = deviceId;
     doc["temperature"] = temp;
