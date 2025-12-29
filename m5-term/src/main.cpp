@@ -3,17 +3,12 @@
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 #include <M5Core2.h>
-
-// WiFi設定
-const char *ssid = "Pixel_3857";
-const char *password = "pn6ryyq2vdrwbcx";
+#include "secrets.h"
 
 // mockData
 float temp = 25.5;
 float humidity = 60.0;
 String deviceId = "Device123";
-
-const char *serverUrl = "http://10.20.167.205:3000/api/m5data";
 
 void setup()
 {
