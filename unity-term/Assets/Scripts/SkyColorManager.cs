@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -21,7 +22,8 @@ public class SkyColorManager : MonoBehaviour
         if (skyColors == null || skyColors.Length == 0 || skyRenderer == null)
             return;
 
-        skyRenderer.color = skyColors[0];
+        DateTime now = DateTime.Now;
+        skyRenderer.color = skyColors[now.Hour];
         StartCoroutine(SkyColorRoutine());
     }
 
@@ -31,8 +33,8 @@ public class SkyColorManager : MonoBehaviour
         {
             yield return new WaitForSeconds(hourInterval);
 
-            currentColorIndex = (currentColorIndex + 1) % skyColors.Length;
-            skyRenderer.color = skyColors[currentColorIndex];
+            DateTime now = DateTime.Now;
+            skyRenderer.color = skyColors[now.Hour];
         }
     }
 }
