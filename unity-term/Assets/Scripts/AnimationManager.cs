@@ -40,6 +40,7 @@ public class AnimationManager : MonoBehaviour
 
         if (state == SlimeAppearanceAnimationState.Normal)
         {
+            headIconAnimator.SetInteger("head_icon_status", 0);
             return;
         }
         
