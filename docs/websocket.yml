@@ -1,0 +1,64 @@
+asyncapi: '2.2.0'
+info:
+  title: Term API
+  version: '1.0.0'
+  description: |
+    バックエンド側のサーバーとUnityアプリケーション間でのWebSocket通信を定義するAsyncAPIドキュメントです。
+    このAPIは、環境情報をリアルタイムで送受信するために使用されます。
+servers:
+  public:
+    url: ws://localhost:8080
+    protocol: ws
+channels:
+  environment/updates:
+    subscribe:
+      message:
+        oneOf:
+          - $ref: '#/components/messages/brightness'
+          - $ref: '#/components/messages/humidity'
+          - $ref: '#/components/messages/temperature'
+components:
+  messages:
+    brightness:
+      name: brightness
+      payload:
+        type: object
+        properties:
+          type:
+            type: string
+            enum: [brightness]
+          value:
+            type: integer
+            minimum: 0
+            maximum: 100
+          timestamp:
+            type: string
+            format: date-time
+    humidity:
+      name: humidity
+      payload:
+        type: object
+        properties:
+          type:
+            type: string
+            enum: [humidity]
+          value:
+            type: integer
+            minimum: 0
+            maximum: 100
+          timestamp:
+            type: string
+            format: date-time
+    temperature:
+      name: temperature
+      payload:
+        type: object
+        properties:
+          type:
+            type: string
+            enum: [temperature]
+          value:
+            type: integer
+          timestamp:
+            type: string
+            format: date-time
