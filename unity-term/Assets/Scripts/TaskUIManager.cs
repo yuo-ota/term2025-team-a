@@ -28,10 +28,6 @@ public class TaskUIManager : MonoBehaviour
         get => _taskId;
         set
         {
-            if (value < 0 || value > 3)
-            {
-                return;
-            }
             _taskId = value;
             UpdateUI();
         }
@@ -73,7 +69,7 @@ public class TaskUIManager : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (TaskId == 0)
+        if (TaskId == 0 || TaskId == 4)
         {
             taskUI.SetActive(false);
             return;
