@@ -1743,6 +1743,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a405564e69701ed4888d157e5ecd067b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slimeAppearanceContext: {fileID: 908043058}
+  lanternManager: {fileID: 1178325121}
 --- !u!4 &1741343538
 Transform:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class SlimeAppearanceContext : MonoBehaviour
@@ -9,6 +10,8 @@ public class SlimeAppearanceContext : MonoBehaviour
     [SerializeField] private float humidity = SlimeAppearanceStateConstants.HUMIDITY_DEFAULT;
     [SerializeField] private float temperature = SlimeAppearanceStateConstants.TEMPERATURE_DEFAULT;
     public event Action<SlimeAppearanceAnimationState> OnStateChanged;
+
+    private const float minuteInterval = 60f;
 
     [ContextMenu("Debug/Humidity 80")]
     public void DebugHumidity80()
@@ -34,11 +37,25 @@ public class SlimeAppearanceContext : MonoBehaviour
         ChangeTemperature(40f);
     }
 
-
     void Awake()
     {
         factory = new SlimeAppearanceStateFactory();
         currentState = factory.Create(SlimeAppearanceStateTransition.ToStandard);
+    }
+    private void Start()
+    {
+        ChangeDayNight();
+        DayNightCheckRoutine();
+    }
+
+    private IEnumerator DayNightCheckRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(minuteInterval);
+
+            ChangeDayNight();
+        }
     }
 
     public void ChangeDayNight()

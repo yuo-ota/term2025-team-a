@@ -48,6 +48,8 @@ public class WebSocketManager : MonoBehaviour
 
     [SerializeField]
     private SlimeAppearanceContext slimeAppearanceContext;
+    [SerializeField]
+    private LanternManager lanternManager;
     Dictionary<string, Action<string>> handlers;
 
     void Awake()
@@ -56,7 +58,8 @@ public class WebSocketManager : MonoBehaviour
     {
         { "brightness", HandleBrightnessResponse },
         { "humidity", HandleHumidityResponse },
-        { "temperature", HandleTemperatureResponse }
+        { "temperature", HandleTemperatureResponse },
+        { "connection_response", HandleConnectionResponse }
     };
     }
 
@@ -208,6 +211,8 @@ public class WebSocketManager : MonoBehaviour
         // WebSocketの接続応答メッセージを処理
         var response = JsonUtility.FromJson<BrightnessMessage>(message);
         slimeAppearanceContext.ChangeBrightness(response.value);
+        lanternManager.Output = response.value;
+        Debug.Log($"Brightness updated to: {response.value}");
     }
 
     // WebSocketの接続応答メッセージを処理
@@ -224,6 +229,11 @@ public class WebSocketManager : MonoBehaviour
         // WebSocketの接続応答メッセージを処理
         var response = JsonUtility.FromJson<TemperatureMessage>(message);
         slimeAppearanceContext.ChangeTemperature(response.value);
+    }
+
+    void HandleConnectionResponse(string message)
+    {
+        Debug.Log("サーバーとの接続が確立されました");
     }
 
     // アプリがポーズされた
