@@ -83,3 +83,4 @@ Assets/_ignore/**/*
 !Assets/_ignore/**/*.meta
 
 Build/
+Build_Linux/
