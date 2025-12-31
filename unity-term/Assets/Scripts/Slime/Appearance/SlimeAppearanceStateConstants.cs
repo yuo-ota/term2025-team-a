@@ -12,4 +12,7 @@ public static class SlimeAppearanceStateConstants
 
     public static readonly TimeSpan NIGHT_START = new TimeSpan(22, 0, 0);
     public static readonly TimeSpan NIGHT_END = new TimeSpan(6, 0, 0);
+
+    public static readonly TimeSpan LANTERN_START = new TimeSpan(19, 0, 0);
+    public static readonly TimeSpan LANTERN_END = new TimeSpan(4, 0, 0);
 }

@@ -40,7 +40,7 @@ public class LanternManager : MonoBehaviour
     {
         TimeSpan now = DateTime.Now.TimeOfDay;
 
-        if (now <= SlimeAppearanceStateConstants.NIGHT_START && now > SlimeAppearanceStateConstants.NIGHT_END)
+        if (now <= SlimeAppearanceStateConstants.LANTERN_START && now > SlimeAppearanceStateConstants.LANTERN_END)
         {
             return 0;
         }
