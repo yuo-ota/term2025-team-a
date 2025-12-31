@@ -81,3 +81,5 @@ crashlytics-build.properties
 Assets/_ignore/**/*
 !Assets/_ignore/**/
 !Assets/_ignore/**/*.meta
+
+Build/
