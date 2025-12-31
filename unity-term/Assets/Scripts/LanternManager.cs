@@ -33,7 +33,7 @@ public class LanternManager : MonoBehaviour
         int outputClamped = CalcOutput(output);
 
         lanternRenderer.color = new Color(1f, 1f, 1f, outputClamped / 100f);
-        lanternLight.intensity = outputClamped / 100f * 1.5f;
+        lanternLight.intensity = Mathf.Sqrt(outputClamped / 100f) * 1.5f;
     }
 
     private int CalcOutput(int output)
