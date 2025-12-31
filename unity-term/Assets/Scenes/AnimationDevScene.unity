@@ -970,7 +970,6 @@ GameObject:
   - component: {fileID: 908043051}
   - component: {fileID: 908043056}
   - component: {fileID: 908043058}
-  - component: {fileID: 908043059}
   m_Layer: 6
   m_Name: slime_normal_stand
   m_TagString: Untagged
@@ -1062,18 +1061,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908043050}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.3881334}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 490021414}
   - {fileID: 931290280}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1791634642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.15}
+  m_AnchoredPosition: {x: -1.5019324, y: 0}
   m_SizeDelta: {x: 9.6, y: 9.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &908043054
@@ -1115,27 +1114,6 @@ MonoBehaviour:
   brightness: 80
   humidity: 25
   temperature: 25
---- !u!114 &908043059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 908043050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72c1e605824f4547ab908bfad2a315f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minPositionX: -36.9
-  maxPositionX: 36.9
-  minMoveIntervalSecond: 5
-  maxMoveIntervalSecond: 30
-  minJumpIntervalSecond: 10
-  maxJumpIntervalSecond: 30
-  moveSpeed: 4
-  animationManager: {fileID: 908043056}
-  spriteRenderer: {fileID: 908043052}
 --- !u!1 &931290279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,7 +1660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1611797345
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8848,6 +8826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1741343538}
   - component: {fileID: 1741343537}
+  - component: {fileID: 1741343539}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -8884,6 +8863,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1741343539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741343536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9074bb3d16f09804294c6f89c42122b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1791634641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1791634642}
+  - component: {fileID: 1791634643}
+  m_Layer: 0
+  m_Name: slime_parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1791634642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791634641}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5019324, y: 0, z: 0.3881334}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 908043053}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1791634643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791634641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72c1e605824f4547ab908bfad2a315f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPositionX: -35
+  maxPositionX: 35
+  minMoveIntervalSecond: 5
+  maxMoveIntervalSecond: 30
+  minJumpIntervalSecond: 10
+  maxJumpIntervalSecond: 30
+  moveSpeed: 4
+  animationManager: {fileID: 908043056}
+  spriteRenderer: {fileID: 908043052}
 --- !u!1 &1927677607
 GameObject:
   m_ObjectHideFlags: 0
@@ -9360,7 +9405,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.12896049, g: 0.27893865, b: 0.4339623, a: 0}
+  m_BackGroundColor: {r: 0.16037738, g: 0.106155045, b: 0.102127105, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -9820,7 +9865,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 908043053}
+  - {fileID: 1791634642}
   - {fileID: 2088865885}
   - {fileID: 419202247}
   - {fileID: 1256245783}
