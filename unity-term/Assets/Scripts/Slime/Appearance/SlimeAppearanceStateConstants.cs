@@ -10,6 +10,6 @@ public static class SlimeAppearanceStateConstants
     public const float TO_DRY_THRESHOLD = 20f;
     public const float TO_BRIGHT_THRESHOLD = 20f;
 
-    public static readonly TimeSpan NIGHT_START = new TimeSpan(18, 0, 0);
+    public static readonly TimeSpan NIGHT_START = new TimeSpan(22, 0, 0);
     public static readonly TimeSpan NIGHT_END = new TimeSpan(6, 0, 0);
 }
