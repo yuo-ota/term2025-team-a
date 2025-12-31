@@ -18,9 +18,9 @@ public class TaskUIManager : MonoBehaviour
     private Dictionary<int, string> taskMap = new Dictionary<int, string>()
     {
         {0, "" },
-        {1, "This room is too dry." },
-        {2, "The slime is too hot." },
-        {3, "This room is too bright." }
+        {1, "スライムが乾燥してしまっています" },
+        {2, "暑さでぐったりしています" },
+        {3, "明るすぎて寝れないようです" }
     };
 
     public int TaskId // 0: タスクなし 1: 温度 2: 湿度 3: 光量
