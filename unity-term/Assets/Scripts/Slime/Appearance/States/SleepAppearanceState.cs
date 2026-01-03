@@ -34,6 +34,10 @@ public class SleepAppearanceState : SlimeAppearanceState
     {
         return SlimeAppearanceStateTransition.None;
     }
+    public SlimeAppearanceStateTransition OnEnter(SlimeAppearanceContext context)
+    {
+        return SlimeAppearanceStateTransition.None;
+    }
 
     public bool CanJump()
     {

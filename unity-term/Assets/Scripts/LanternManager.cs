@@ -13,7 +13,7 @@ public class LanternManager : MonoBehaviour
         UpdateLantern(Output);
     }
 
-    public int Output // 0: タスクなし 1: 温度 2: 湿度 3: 光量
+    public int Output
     {
         get => _output;
         set
@@ -33,14 +33,14 @@ public class LanternManager : MonoBehaviour
         int outputClamped = CalcOutput(output);
 
         lanternRenderer.color = new Color(1f, 1f, 1f, outputClamped / 100f);
-        lanternLight.intensity = outputClamped / 100f * 1.5f;
+        lanternLight.intensity = Mathf.Sqrt(outputClamped / 100f) * 1.5f;
     }
 
     private int CalcOutput(int output)
     {
         TimeSpan now = DateTime.Now.TimeOfDay;
 
-        if (now <= SlimeAppearanceStateConstants.NIGHT_START && now > SlimeAppearanceStateConstants.NIGHT_END)
+        if (now <= SlimeAppearanceStateConstants.LANTERN_START && now > SlimeAppearanceStateConstants.LANTERN_END)
         {
             return 0;
         }

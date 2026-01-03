@@ -35,6 +35,11 @@ public class HotAppearanceState : SlimeAppearanceState
         return SlimeAppearanceStateTransition.ToStandard;
     }
 
+    public SlimeAppearanceStateTransition OnEnter(SlimeAppearanceContext context)
+    {
+        return SlimeAppearanceStateTransition.None;
+    }
+
     public bool CanJump()
     {
         return true;
