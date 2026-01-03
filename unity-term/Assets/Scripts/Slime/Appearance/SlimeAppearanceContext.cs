@@ -7,6 +7,7 @@ public class SlimeAppearanceContext : MonoBehaviour
     private SlimeAppearanceState currentState;
     private SlimeAppearanceStateFactory factory;
     [SerializeField] private float brightness = SlimeAppearanceStateConstants.BRIGHTNESS_DEFAULT;
+    public float Brightness => brightness;
     [SerializeField] private float humidity = SlimeAppearanceStateConstants.HUMIDITY_DEFAULT;
     [SerializeField] private float temperature = SlimeAppearanceStateConstants.TEMPERATURE_DEFAULT;
     public event Action<SlimeAppearanceAnimationState> OnStateChanged;
@@ -124,6 +125,14 @@ public class SlimeAppearanceContext : MonoBehaviour
     private void ChangeState(SlimeAppearanceState newState)
     {
         currentState = newState;
+
+        var transition = currentState.OnEnter(this);
+        if (transition != SlimeAppearanceStateTransition.None)
+        {
+            HandleState(transition);
+            return;
+        }
+
         OnStateChanged?.Invoke(newState.StateType);
     }
 

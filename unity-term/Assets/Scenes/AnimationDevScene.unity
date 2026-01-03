@@ -1111,7 +1111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73228eb1c0040b44b763bcab4002f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brightness: 80
+  brightness: 0
   humidity: 25
   temperature: 25
 --- !u!1 &931290279

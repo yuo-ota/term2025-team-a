@@ -40,6 +40,11 @@ public class NormalAppearanceState : SlimeAppearanceState
         return SlimeAppearanceStateTransition.None;
     }
 
+    public SlimeAppearanceStateTransition OnEnter(SlimeAppearanceContext context)
+    {
+        return SlimeAppearanceStateTransition.None;
+    }
+
     public bool CanJump()
     {
         return true;

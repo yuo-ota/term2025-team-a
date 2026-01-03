@@ -13,7 +13,7 @@ public class LanternManager : MonoBehaviour
         UpdateLantern(Output);
     }
 
-    public int Output // 0: タスクなし 1: 温度 2: 湿度 3: 光量
+    public int Output
     {
         get => _output;
         set

@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using UnityEngine;
 
 public class NightAppearanceState : SlimeAppearanceState
 {
@@ -32,6 +34,16 @@ public class NightAppearanceState : SlimeAppearanceState
 
     public SlimeAppearanceStateTransition ChangeTemperature(float temperature)
     {
+        return SlimeAppearanceStateTransition.None;
+    }
+
+    public SlimeAppearanceStateTransition OnEnter(SlimeAppearanceContext context)
+    {
+        if (context.Brightness < SlimeAppearanceStateConstants.TO_BRIGHT_THRESHOLD)
+        {
+            return SlimeAppearanceStateTransition.ToSleep;
+        }
+
         return SlimeAppearanceStateTransition.None;
     }
 

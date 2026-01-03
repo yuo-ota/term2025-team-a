@@ -35,7 +35,7 @@ public class TemperatureMessage
 public class WebSocketManager : MonoBehaviour
 {
     private WebSocket ws;
-    private string serverUrl = "ws://localhost:8080/";
+    private string serverUrl = "ws://localhost:3000/";
 
     // メインスレッド実行用
     private readonly Queue<Action> _mainThreadActions = new Queue<Action>();
