@@ -84,7 +84,35 @@ void loop()
     delay(10000); // 10秒待機
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+    doc["device_id"] = deviceId;
+    doc["temperature"] = temp;
+    doc["humidity"] = humidity;
+
+    String jsonpayload;
+    serializeJson(doc, jsonpayload);
+
+    HTTPClient http;
+    http.begin(serverUrl);
+
+    http.addHeader("Content-Type", "application/json");
+
+    int httpResponseCode = http.POST(jsonpayload);
+
+    if (httpResponseCode > 0)
+    {
+        Serial.print("HTTP Response code: ");
+        M5.Lcd.printf("HTTP Response code: %d\n", httpResponseCode);
+        Serial.println(httpResponseCode);
+        String response = http.getString();
+        Serial.println(response);
+        M5.Lcd.println(response);
+    }
+    else
+    {
+        Serial.print("Error code: ");
+        Serial.println(httpResponseCode);
+        M5.Lcd.printf("Error code: %d\n", httpResponseCode);
+    }
+    http.end();
+    delay(10000); // 10秒待機
 }

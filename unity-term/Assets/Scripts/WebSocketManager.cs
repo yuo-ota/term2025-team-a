@@ -4,34 +4,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 
-
-// WebsocketAPIで通信するためのメッセージ(クライアント→サーバー)の型
-[Serializable]
-public class WebSocketMessage
+public class BaseMessage
 {
     public string type;
-    public object data;
 }
 
 // WebsocketAPIで通信するためのメッセージ(サーバー→クライアント)の型
 [Serializable]
-public class ConnectionResponse
+public class BrightnessMessage
 {
     public string type;
-    public ConnectionData data;
+    public int value;
+}
 
-    [Serializable]
-    public class ConnectionData
-    {
-        public string message;
-    }
+[Serializable]
+public class HumidityMessage
+{
+    public string type;
+    public int value;
+}
+
+[Serializable]
+public class TemperatureMessage
+{
+    public string type;
+    public int value;
 }
 
 // WebSocketManager: WebSocketの接続・送受信・イベントハンドリングを管理
 public class WebSocketManager : MonoBehaviour
 {
     private WebSocket ws;
-    private string serverUrl = "ws://localhost:8080/ws/test";
+    private string serverUrl = "ws://localhost:3000/";
 
     // メインスレッド実行用
     private readonly Queue<Action> _mainThreadActions = new Queue<Action>();
@@ -41,6 +45,23 @@ public class WebSocketManager : MonoBehaviour
     private int maxRetryAttempts = 3;
     private int retryCount = 0;
     private float retryDelay = 3f;
+
+    [SerializeField]
+    private SlimeAppearanceContext slimeAppearanceContext;
+    [SerializeField]
+    private LanternManager lanternManager;
+    Dictionary<string, Action<string>> handlers;
+
+    void Awake()
+    {
+        handlers = new Dictionary<string, Action<string>>
+    {
+        { "brightness", HandleBrightnessResponse },
+        { "humidity", HandleHumidityResponse },
+        { "temperature", HandleTemperatureResponse },
+        { "connection_response", HandleConnectionResponse }
+    };
+    }
 
     void Start()
     {
@@ -176,43 +197,43 @@ public class WebSocketManager : MonoBehaviour
     // WebSocketのメッセージを処理
     void ProcessMessage(string message)
     {
-        try
-        {
-            var typeCheck = JsonUtility.FromJson<WebSocketMessage>(message);
-            switch (typeCheck.type)
-            {
-                case "connection_response":
-                    // WebSocketの接続応答メッセージを処理
-                    HandleConnectionResponse(message);
-                    break;
-                case "server_ping":
-                    HandlePingResponse(message);
-                    break;
-                default:
-                    Debug.LogWarning($"未知のメッセージタイプ: {typeCheck.type}");
-                    break;
-            }
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"メッセージ解析エラー: {ex.Message}");
-        }
+        var baseMsg = JsonUtility.FromJson<BaseMessage>(message);
+
+        if (handlers.TryGetValue(baseMsg.type, out var handler))
+            handler(message);
+        else
+            Debug.LogWarning($"未知のメッセージタイプ: {baseMsg.type}");
     }
 
     // WebSocketの接続応答メッセージを処理
+    void HandleBrightnessResponse(string message)
+    {
+        // WebSocketの接続応答メッセージを処理
+        var response = JsonUtility.FromJson<BrightnessMessage>(message);
+        slimeAppearanceContext.ChangeBrightness(response.value);
+        lanternManager.Output = response.value;
+        Debug.Log($"Brightness updated to: {response.value}");
+    }
+
+    // WebSocketの接続応答メッセージを処理
+    void HandleHumidityResponse(string message)
+    {
+        // WebSocketの接続応答メッセージを処理
+        var response = JsonUtility.FromJson<HumidityMessage>(message);
+        slimeAppearanceContext.ChangeHumidity(response.value);
+    }
+
+    // WebSocketの接続応答メッセージを処理
+    void HandleTemperatureResponse(string message)
+    {
+        // WebSocketの接続応答メッセージを処理
+        var response = JsonUtility.FromJson<TemperatureMessage>(message);
+        slimeAppearanceContext.ChangeTemperature(response.value);
+    }
+
     void HandleConnectionResponse(string message)
     {
-        // WebSocketの接続応答メッセージを処理
-        var response = JsonUtility.FromJson<ConnectionResponse>(message);
-        Debug.Log($"接続確認完了: {response.data.message}");
-    }
-
-    // WebSocketの接続応答メッセージを処理
-    void HandlePingResponse(string message)
-    {
-        // WebSocketの接続応答メッセージを処理
-        var response = JsonUtility.FromJson<ConnectionResponse>(message);
-        Debug.Log($"定期実行確認: {response.data.message}");
+        Debug.Log("サーバーとの接続が確立されました");
     }
 
     // アプリがポーズされた

@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
@@ -6,6 +8,8 @@ public class AnimationManager : MonoBehaviour
     private GameObject mySelf;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private Animator headIconAnimator;
     [SerializeField]
     private SlimeAppearanceContext appearanceContext;
 
@@ -35,6 +39,21 @@ public class AnimationManager : MonoBehaviour
     public void SetAppearance(SlimeAppearanceAnimationState state)
     {
         animator.SetInteger("slime_status", (int)state);
+        Debug.Log($"Set slime animation state to {state}");
+
+        if (state == SlimeAppearanceAnimationState.Normal)
+        {
+            headIconAnimator.SetInteger("head_icon_status", 0);
+            return;
+        }
+        
+        if (state == SlimeAppearanceAnimationState.Sleep)
+        {
+            headIconAnimator.SetInteger("head_icon_status", 1);
+            return;
+        }
+
+        headIconAnimator.SetInteger("head_icon_status", 2);
     }
 
     public void Jump()
