@@ -43,10 +43,7 @@ public class SimpleAutoMover : MonoBehaviour
             float target = Random.Range(minPositionX, maxPositionX);
             float start = transform.position.x;
 
-            if (!animationManager.CanMove())
-            {
-                yield return new WaitForSeconds(60f);
-            }
+            yield return new WaitUntil(() => animationManager.CanMove());
 
             // 画像の向き設定
             bool isGoalLeft = target - start < 0;
@@ -80,10 +77,7 @@ public class SimpleAutoMover : MonoBehaviour
     {
         while (true)
         {
-            if (!animationManager.CanJump())
-            {
-                yield return new WaitForSeconds(60f);
-            }
+            yield return new WaitUntil(() => animationManager.CanJump());
 
             animationManager.Jump();
 
