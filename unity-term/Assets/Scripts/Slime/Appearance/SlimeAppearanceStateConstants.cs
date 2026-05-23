@@ -1,0 +1,18 @@
+using System;
+
+public static class SlimeAppearanceStateConstants
+{
+    public const float TEMPERATURE_DEFAULT = 25f;
+    public const float HUMIDITY_DEFAULT = 25f;
+    public const float BRIGHTNESS_DEFAULT = 0f;
+
+    public const float TO_HOT_THRESHOLD = 30f;
+    public const float TO_DRY_THRESHOLD = 20f;
+    public const float TO_BRIGHT_THRESHOLD = 20f;
+
+    public static readonly TimeSpan NIGHT_START = new TimeSpan(22, 0, 0);
+    public static readonly TimeSpan NIGHT_END = new TimeSpan(6, 0, 0);
+
+    public static readonly TimeSpan LANTERN_START = new TimeSpan(19, 0, 0);
+    public static readonly TimeSpan LANTERN_END = new TimeSpan(4, 0, 0);
+}

@@ -77,5 +77,11 @@ crashlytics-build.properties
 # End of https://www.toptal.com/developers/gitignore/api/unity
 
 # other
-!_ignore/.gitkeep
-_ignore/*
+!Assets/_ignore/.gitkeep
+Assets/_ignore/**/*
+!Assets/_ignore/**/
+!Assets/_ignore/**/*.meta
+
+Build/
+Build_Linux/
+Build_Web/
