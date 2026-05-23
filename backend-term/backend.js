@@ -10,6 +10,17 @@ const wss = new WebSocket.Server({ server });
 
 let clients = [];
 
+const SEND_SPAN_MS = 1500;
+
+// WebSocket ブロードキャスト用ヘルパー
+const broadcast = (msg) => {
+    clients.forEach(ws => {
+        if (ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify(msg));
+        }
+    });
+};
+
 // UnityのWebSocket
 wss.on("connection", (ws) => {
     console.log("WebSocket connected");
@@ -47,13 +58,9 @@ app.post("/api/m5data", (req, res) => {
         });
     }
 
-    // WebSocketでUnity に送信
-    messages.forEach(msg => {
-        clients.forEach(ws => {
-            if (ws.readyState === WebSocket.OPEN) {
-                ws.send(JSON.stringify(msg));
-            }
-        });
+    // WebSocketでUnity に送信（temperature→humidity の順で少し間隔を空ける）
+    messages.forEach((msg, index) => {
+        setTimeout(() => broadcast(msg), index * SEND_SPAN_MS);
     });
 
     res.sendStatus(200);
