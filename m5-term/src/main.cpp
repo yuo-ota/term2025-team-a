@@ -5,6 +5,7 @@
 #include "secrets.h"
 #include <M5Unified.h>
 #include <M5UnitENV.h>
+#include <M5_DLight.h>
 
 const int paHubI2CAddr = 0x70;
 
@@ -17,10 +18,12 @@ void selectPaHubChannel(int channel)
 
 // ENV4設定
 SHT4X sht4x;
+M5_DLight dlight;
 
 // data_types
 float temp;
 float humidity;
+uint16_t lux = 0;
 String deviceId = "Device123";
 
 void setup()
@@ -53,6 +56,16 @@ void setup()
     {
         M5.Lcd.printf("SHT4s found!");
     }
+
+    selectPaHubChannel(2);
+    delay(10);
+
+    dlight.begin(&Wire, 32, 33);
+    dlight.setMode(CONTINUOUSLY_H_RESOLUTION_MODE);
+
+    M5.Lcd.printf("DLight initialized!\n");
+    Serial.println("DLight initialized!");
+
 }
 
 void loop()
@@ -69,11 +82,18 @@ void loop()
         Serial.printf("Temp: %.2f C, Humidity: %.2f %%\n", temp, humidity);
     }
 
+    selectPaHubChannel(2);
+    delay(10);
+    // DLight get data
+    lux = dlight.getLUX();
+    Serial.printf("Lux: %d\n", lux);
+
     DynamicJsonDocument doc(200);
 
     doc["device_id"] = deviceId;
     doc["temperature"] = temp;
     doc["humidity"] = humidity;
+    doc["light"] = lux;
 
     String jsonpayload;
     serializeJson(doc, jsonpayload);
