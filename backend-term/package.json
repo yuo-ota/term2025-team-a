@@ -9,6 +9,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
-  }
+    "express": "^5.2.1",
+    "ws": "^8.18.3"
+  },
+  "keywords": [],
+  "type": "commonjs"
 }
